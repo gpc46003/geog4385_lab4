@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1320px;
+            height: 903px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Joinedlayer_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[40.62576776252338,-74.09756794997014],[40.84889286655546,-73.77117628835606]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+        });
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_Joinedlayer_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(String(feature.properties['fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['left'] !== null ? Autolinker.link(String(feature.properties['left'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['bottom'] !== null ? Autolinker.link(String(feature.properties['bottom'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['right'] !== null ? Autolinker.link(String(feature.properties['right'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['top'] !== null ? Autolinker.link(String(feature.properties['top'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['hexid'] !== null ? Autolinker.link(String(feature.properties['hexid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['recordID_count'] !== null ? Autolinker.link(String(feature.properties['recordID_count'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['recordID_unique'] !== null ? Autolinker.link(String(feature.properties['recordID_unique'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['recordID_empty'] !== null ? Autolinker.link(String(feature.properties['recordID_empty'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['recordID_filled'] !== null ? Autolinker.link(String(feature.properties['recordID_filled'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['recordID_min'] !== null ? Autolinker.link(String(feature.properties['recordID_min'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['recordID_max'] !== null ? Autolinker.link(String(feature.properties['recordID_max'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['recordID_min_length'] !== null ? Autolinker.link(String(feature.properties['recordID_min_length'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['recordID_max_length'] !== null ? Autolinker.link(String(feature.properties['recordID_max_length'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['recordID_mean_length'] !== null ? Autolinker.link(String(feature.properties['recordID_mean_length'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_time_count'] !== null ? Autolinker.link(String(feature.properties['pickup_time_count'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_time_unique'] !== null ? Autolinker.link(String(feature.properties['pickup_time_unique'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_time_empty'] !== null ? Autolinker.link(String(feature.properties['pickup_time_empty'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_time_filled'] !== null ? Autolinker.link(String(feature.properties['pickup_time_filled'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_time_min'] !== null ? Autolinker.link(String(feature.properties['pickup_time_min'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_time_max'] !== null ? Autolinker.link(String(feature.properties['pickup_time_max'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_time_min_length'] !== null ? Autolinker.link(String(feature.properties['pickup_time_min_length'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_time_max_length'] !== null ? Autolinker.link(String(feature.properties['pickup_time_max_length'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_time_mean_length'] !== null ? Autolinker.link(String(feature.properties['pickup_time_mean_length'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_time_count'] !== null ? Autolinker.link(String(feature.properties['dropoff_time_count'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_time_unique'] !== null ? Autolinker.link(String(feature.properties['dropoff_time_unique'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_time_empty'] !== null ? Autolinker.link(String(feature.properties['dropoff_time_empty'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_time_filled'] !== null ? Autolinker.link(String(feature.properties['dropoff_time_filled'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_time_min'] !== null ? Autolinker.link(String(feature.properties['dropoff_time_min'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_time_max'] !== null ? Autolinker.link(String(feature.properties['dropoff_time_max'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_time_min_length'] !== null ? Autolinker.link(String(feature.properties['dropoff_time_min_length'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_time_max_length'] !== null ? Autolinker.link(String(feature.properties['dropoff_time_max_length'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_time_mean_length'] !== null ? Autolinker.link(String(feature.properties['dropoff_time_mean_length'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_count'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_count'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_unique'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_unique'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_min'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_min'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_max'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_max'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_range'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_range'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_sum'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_sum'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_mean'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_mean'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_median'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_median'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_stddev'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_stddev'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_minority'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_minority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_majority'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_majority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_q1'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_q1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_q3'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_q3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_longitude_iqr'] !== null ? Autolinker.link(String(feature.properties['pickup_longitude_iqr'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_count'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_count'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_unique'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_unique'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_min'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_min'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_max'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_max'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_range'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_range'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_sum'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_sum'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_mean'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_mean'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_median'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_median'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_stddev'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_stddev'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_minority'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_minority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_majority'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_majority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_q1'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_q1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_q3'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_q3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pickup_latitude_iqr'] !== null ? Autolinker.link(String(feature.properties['pickup_latitude_iqr'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_count'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_count'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_unique'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_unique'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_min'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_min'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_max'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_max'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_range'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_range'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_sum'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_sum'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_mean'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_mean'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_median'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_median'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_stddev'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_stddev'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_minority'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_minority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_majority'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_majority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_q1'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_q1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_q3'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_q3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_longitude_iqr'] !== null ? Autolinker.link(String(feature.properties['dropoff_longitude_iqr'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_count'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_count'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_unique'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_unique'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_min'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_min'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_max'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_max'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_range'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_range'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_sum'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_sum'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_mean'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_mean'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_median'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_median'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_stddev'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_stddev'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_minority'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_minority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_majority'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_majority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_q1'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_q1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_q3'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_q3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dropoff_latitude_iqr'] !== null ? Autolinker.link(String(feature.properties['dropoff_latitude_iqr'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_count'] !== null ? Autolinker.link(String(feature.properties['tip_amount_count'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_unique'] !== null ? Autolinker.link(String(feature.properties['tip_amount_unique'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_min'] !== null ? Autolinker.link(String(feature.properties['tip_amount_min'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_max'] !== null ? Autolinker.link(String(feature.properties['tip_amount_max'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_range'] !== null ? Autolinker.link(String(feature.properties['tip_amount_range'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_sum'] !== null ? Autolinker.link(String(feature.properties['tip_amount_sum'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_mean'] !== null ? Autolinker.link(String(feature.properties['tip_amount_mean'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_median'] !== null ? Autolinker.link(String(feature.properties['tip_amount_median'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_stddev'] !== null ? Autolinker.link(String(feature.properties['tip_amount_stddev'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_minority'] !== null ? Autolinker.link(String(feature.properties['tip_amount_minority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_majority'] !== null ? Autolinker.link(String(feature.properties['tip_amount_majority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_q1'] !== null ? Autolinker.link(String(feature.properties['tip_amount_q1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_q3'] !== null ? Autolinker.link(String(feature.properties['tip_amount_q3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tip_amount_iqr'] !== null ? Autolinker.link(String(feature.properties['tip_amount_iqr'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_count'] !== null ? Autolinker.link(String(feature.properties['fare_amount_count'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_unique'] !== null ? Autolinker.link(String(feature.properties['fare_amount_unique'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_min'] !== null ? Autolinker.link(String(feature.properties['fare_amount_min'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_max'] !== null ? Autolinker.link(String(feature.properties['fare_amount_max'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_range'] !== null ? Autolinker.link(String(feature.properties['fare_amount_range'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_sum'] !== null ? Autolinker.link(String(feature.properties['fare_amount_sum'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_mean'] !== null ? Autolinker.link(String(feature.properties['fare_amount_mean'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_median'] !== null ? Autolinker.link(String(feature.properties['fare_amount_median'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_stddev'] !== null ? Autolinker.link(String(feature.properties['fare_amount_stddev'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_minority'] !== null ? Autolinker.link(String(feature.properties['fare_amount_minority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_majority'] !== null ? Autolinker.link(String(feature.properties['fare_amount_majority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_q1'] !== null ? Autolinker.link(String(feature.properties['fare_amount_q1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_q3'] !== null ? Autolinker.link(String(feature.properties['fare_amount_q3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fare_amount_iqr'] !== null ? Autolinker.link(String(feature.properties['fare_amount_iqr'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_count'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_count'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_unique'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_unique'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_min'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_min'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_max'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_max'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_range'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_range'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_sum'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_sum'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_mean'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_mean'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_median'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_median'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_stddev'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_stddev'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_minority'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_minority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_majority'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_majority'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_q1'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_q1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_q3'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_q3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_ratio_iqr'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_iqr'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Joinedlayer_1_0(feature) {
+            if (feature.properties['tipfare_ratio_median'] >= 0.000000 && feature.properties['tipfare_ratio_median'] <= 0.021277 ) {
+                return {
+                pane: 'pane_Joinedlayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,255,255,0.6)',
+            }
+            }
+            if (feature.properties['tipfare_ratio_median'] >= 0.021277 && feature.properties['tipfare_ratio_median'] <= 0.077961 ) {
+                return {
+                pane: 'pane_Joinedlayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(198,219,239,0.6)',
+            }
+            }
+            if (feature.properties['tipfare_ratio_median'] >= 0.077961 && feature.properties['tipfare_ratio_median'] <= 0.142857 ) {
+                return {
+                pane: 'pane_Joinedlayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(107,174,214,0.6)',
+            }
+            }
+            if (feature.properties['tipfare_ratio_median'] >= 0.142857 && feature.properties['tipfare_ratio_median'] <= 0.188889 ) {
+                return {
+                pane: 'pane_Joinedlayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(33,113,181,0.6)',
+            }
+            }
+            if (feature.properties['tipfare_ratio_median'] >= 0.188889 && feature.properties['tipfare_ratio_median'] <= 0.242353 ) {
+                return {
+                pane: 'pane_Joinedlayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(8,48,107,0.6)',
+            }
+            }
+        }
+        map.createPane('pane_Joinedlayer_1');
+        map.getPane('pane_Joinedlayer_1').style.zIndex = 401;
+        map.getPane('pane_Joinedlayer_1').style['mix-blend-mode'] = 'normal';
+        var layer_Joinedlayer_1 = new L.geoJson(json_Joinedlayer_1, {
+            attribution: '',
+            pane: 'pane_Joinedlayer_1',
+            onEachFeature: pop_Joinedlayer_1,
+            style: style_Joinedlayer_1_0,
+        });
+        bounds_group.addLayer(layer_Joinedlayer_1);
+        map.addLayer(layer_Joinedlayer_1);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Joined layer<br /><table><tr><td style="text-align: center;"><img src="legend/Joinedlayer_1_00000002130.png" /></td><td> 0.0000 - 0.0213 </td></tr><tr><td style="text-align: center;"><img src="legend/Joinedlayer_1_00213007801.png" /></td><td> 0.0213 - 0.0780 </td></tr><tr><td style="text-align: center;"><img src="legend/Joinedlayer_1_00780014292.png" /></td><td> 0.0780 - 0.1429 </td></tr><tr><td style="text-align: center;"><img src="legend/Joinedlayer_1_01429018893.png" /></td><td> 0.1429 - 0.1889 </td></tr><tr><td style="text-align: center;"><img src="legend/Joinedlayer_1_01889024244.png" /></td><td> 0.1889 - 0.2424 </td></tr></table>': layer_Joinedlayer_1,"OSM Standard": layer_OSMStandard_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
