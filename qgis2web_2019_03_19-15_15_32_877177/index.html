@@ -48,12 +48,10 @@
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['tipfare_ratio_count'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_count'])) : '') + '</td>\
-                    </tr>\
-                   
+                    </tr>\                   
                     <tr>\
                         <td colspan="2">' + (feature.properties['tipfare_ratio_median'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_median'])) : '') + '</td>\
-                    </tr>\
-                    
+                    </tr>\                    
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
