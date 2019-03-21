@@ -14,7 +14,7 @@
             height: 903px;
         }
         </style>
-        <title></title>
+        <title> Lab 4 - Map App </title>
     </head>
     <body>
         <div id="map">
@@ -40,22 +40,15 @@
         }
         var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             opacity: 1.0,
-            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            attribution: '<a href="https://www.openstreetmap.org/copyright">Â© OpenStreetMap contributors, CC-BY-SA</a>',
         });
         layer_OSMStandard_0;
         map.addLayer(layer_OSMStandard_0);
         function pop_Joinedlayer_1(feature, layer) {
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"><b>Count of Rides:</b> ' + (feature.properties['tipfare_ratio_count'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_count'])) : '') + '</td>\
-                    </tr>\                  
-                    <tr>\
-                        <td colspan="2"><b>Ratio of tip to fare:</b> ' + (feature.properties['tipfare_ratio_median'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_median'])) : '') + '</td>\
-                    </tr>\                    
-                </table>';
+                    <tr> <td colspan="2"><b>Count of Rides:</b> ' + (feature.properties['tipfare_ratio_count'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_count'])) : '') + '</td></tr><tr><td colspan="2"><b>Ratio of Tip to Fare:</b> ' + (feature.properties['tipfare_ratio_median'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_median'])) : '') + '</td></tr></table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
-
         function style_Joinedlayer_1_0(feature) {
             if (feature.properties['tipfare_ratio_median'] >= 0.000000 && feature.properties['tipfare_ratio_median'] <= 0.021277 ) {
                 return {
