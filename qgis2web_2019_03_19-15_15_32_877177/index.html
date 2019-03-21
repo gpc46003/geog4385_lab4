@@ -47,11 +47,11 @@
         function pop_Joinedlayer_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['tipfare_ratio_count'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_count'])) : '') + '</td>\
-                    </tr>                  
+                        <td colspan="2"><b>Count of Rides:</b> ' + (feature.properties['tipfare_ratio_count'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_count'])) : '') + '</td>\
+                    </tr>\                  
                     <tr>\
-                        <td colspan="2">' + (feature.properties['tipfare_ratio_median'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_median'])) : '') + '</td>\
-                    </tr>                    
+                        <td colspan="2"><b>Ratio of tip to fare:</b> ' + (feature.properties['tipfare_ratio_median'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_median'])) : '') + '</td>\
+                    </tr>\                    
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
